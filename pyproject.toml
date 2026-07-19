@@ -1,0 +1,35 @@
+[build-system]
+  requires = ["setuptools>=75", "wheel"]
+  build-backend = "setuptools.build_meta"
+
+  [project]
+  name = "autoguard-edge-capture"
+  version = "0.1.0"
+  description = "Low-resource AI event trigger and evidence-preserving ring buffer for autonomous vehicles"
+  readme = "README.md"
+  requires-python = ">=3.11"
+  license = {text = "MIT"}
+  authors = [{name = "AutoGuard Labs"}]
+  dependencies = [
+    "fastapi>=0.115,<1",
+"uvicorn[standard]>=0.30,<1",
+"pydantic>=2.10,<3",
+"numpy>=2,<3",
+"scikit-learn>=1.5,<2"
+  ]
+
+  [project.optional-dependencies]
+  dev = ["pytest>=8,<10", "ruff>=0.9,<1", "httpx>=0.27,<1"]
+
+
+  [tool.setuptools.packages.find]
+  where = ["src"]
+
+  [tool.pytest.ini_options]
+  pythonpath = ["src", "."]
+  testpaths = ["tests"]
+  addopts = "-q"
+
+  [tool.ruff]
+  line-length = 100
+  target-version = "py311"
